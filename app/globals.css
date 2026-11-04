@@ -2,10 +2,10 @@
 
 :root {
   color-scheme: light;
-  --background: #f4f7fb;
+  --background: #f5f7fb;
   --panel: #ffffff;
-  --panel-soft: #eef3f8;
-  --border: #dbe3ed;
+  --panel-soft: #f1f5f9;
+  --border: #e2e8f0;
   --muted: #64748b;
   --text: #172033;
   --accent: #e83d4d;
@@ -22,9 +22,13 @@ body {
 button, input { font: inherit; }
 ::selection { background: #f0445233; }
 
-/* Keep the admin workspace light even where older pages used dark utility colors. */
-.bg-\[\#0b1320\], .bg-\[\#080d16\] { background-color: #f8fafc !important; }
-.text-white { color: #172033; }
-.text-slate-300, .text-slate-400 { color: #526176; }
-.text-slate-500 { color: #64748b; }
-.border-\[var\(--border\)\] { border-color: var(--border); }
+a { transition: color 150ms ease, background-color 150ms ease; }
+table tbody tr { transition: background-color 150ms ease; }
+table tbody tr:hover { background: #f8fafc; }
+input, select, textarea {
+  color: var(--text);
+}
+:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
