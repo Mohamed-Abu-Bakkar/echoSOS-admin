@@ -22,11 +22,11 @@ export default function EmergencyContactsPage() {
 
   return (
     <main className="min-h-screen p-6 lg:p-10">
-      <Link href="/" className="inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-white">
+      <Link href="/" className="inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-slate-900">
         <ArrowLeft size={16} /> Overview
       </Link>
       <div className="mt-7 flex items-center gap-3">
-        <ContactRound className="text-slate-300" />
+        <ContactRound className="text-slate-700" />
         <div>
           <h1 className="text-2xl font-semibold">Emergency contacts</h1>
           <p className="mt-1 text-sm text-[var(--muted)]">Read-only contact directory · latest 100</p>
@@ -40,7 +40,7 @@ export default function EmergencyContactsPage() {
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="bg-[#142133] text-xs uppercase tracking-wide text-slate-400">
+              <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
                 <tr>
                   <th className="px-5 py-4">Contact</th>
                   <th className="px-5 py-4">Relationship</th>
@@ -54,7 +54,7 @@ export default function EmergencyContactsPage() {
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-2 font-medium">
                         {contact.name}
-                        {contact.isPrimary && <Star size={13} className="text-amber-300" aria-label="Primary contact" />}
+                        {contact.isPrimary && <Star size={13} className="text-amber-600" aria-label="Primary contact" />}
                       </div>
                     </td>
                     <td className="px-5 py-4 text-slate-300">{contact.relationship}</td>
