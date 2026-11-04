@@ -8,7 +8,7 @@ import { ShieldCheck, LockKeyhole, Mail, ArrowRight } from "lucide-react";
 export default function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [notice, setNotice] = useState("Authentication will activate when the shared Convex Better Auth component is configured.");
+  const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false);
   const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
@@ -19,10 +19,15 @@ export default function SignInPage() {
     event.preventDefault();
     setBusy(true);
     setNotice("");
-    const result = await authClient.signIn.email({ email, password, callbackURL: "/" });
-    if (result.error) setNotice(result.error.message || "Unable to sign in.");
-    else router.replace("/");
-    setBusy(false);
+    try {
+      const result = await authClient.signIn.email({ email: email.trim(), password, callbackURL: "/" });
+      if (result.error) setNotice(result.error.message || "Unable to sign in. Check your credentials and try again.");
+      else router.replace("/");
+    } catch {
+      setNotice("The authentication service could not be reached. Check the backend connection and try again.");
+    } finally {
+      setBusy(false);
+    }
   }
 
   return <main className="grid min-h-screen place-items-center px-5 py-10">
@@ -36,9 +41,9 @@ export default function SignInPage() {
         <label className="block text-sm text-slate-300">Password
           <span className="mt-2 flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[#0b1320] px-3"><LockKeyhole size={17} className="text-slate-500"/><input required type="password" autoComplete="current-password" value={password} onChange={e=>setPassword(e.target.value)} placeholder="Enter your password" className="h-12 w-full bg-transparent text-sm outline-none"/></span>
         </label>
-        <button disabled={busy} className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#e83d4d] text-sm font-semibold text-white transition hover:bg-[#f05260] disabled:opacity-60">Continue <ArrowRight size={17}/></button>
+        <button disabled={busy} className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#e83d4d] text-sm font-semibold text-white transition hover:bg-[#f05260] disabled:opacity-60">{busy ? "Signing in…" : "Continue"} <ArrowRight size={17}/></button>
       </form>
-      <p role="status" className="mt-5 rounded-xl border border-amber-500/20 bg-amber-500/5 p-3 text-xs leading-5 text-amber-200">{notice}</p>
+      {notice && <p role="alert" className="mt-5 rounded-xl border border-amber-500/20 bg-amber-500/5 p-3 text-xs leading-5 text-amber-200">{notice}</p>}
       <p className="mt-6 text-center text-[11px] text-slate-500">Access is restricted to the provisioned administrator. Public registration is disabled.</p>
     </div>
   </main>;
