@@ -1,5 +1,6 @@
 import Link from "next/link";
 import OverviewLive from "@/components/overview-live";
+import SignOutButton from "@/components/sign-out-button";
 import { Activity, ArrowUpRight, BellRing, Bluetooth, Clock3, MapPin, ShieldCheck, Users } from "lucide-react";
 
 const navigation = [
@@ -50,7 +51,7 @@ export default function Home() {
           <div><p className="text-xs text-[var(--muted)]">ECHO SOS / OPERATIONS</p><h1 className="mt-1 text-xl font-semibold">Overview</h1></div>
           <div className="flex items-center gap-3">
             <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-xs text-amber-300">Backend not connected</span>
-            <div className="grid h-9 w-9 place-items-center rounded-full border border-[var(--border)] bg-[var(--panel-soft)] text-sm">A</div>
+            <SignOutButton />
           </div>
         </header>
 
