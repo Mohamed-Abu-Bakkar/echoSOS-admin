@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: dark;
-  --background: #080d16;
-  --panel: #101927;
-  --panel-soft: #142133;
-  --border: #243449;
-  --muted: #91a0b4;
-  --text: #edf3fb;
-  --accent: #f04452;
+  color-scheme: light;
+  --background: #f4f7fb;
+  --panel: #ffffff;
+  --panel-soft: #eef3f8;
+  --border: #dbe3ed;
+  --muted: #64748b;
+  --text: #172033;
+  --accent: #e83d4d;
 }
 
 * { box-sizing: border-box; }
@@ -20,4 +20,11 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 button, input { font: inherit; }
-::selection { background: #f0445244; }
+::selection { background: #f0445233; }
+
+/* Keep the admin workspace light even where older pages used dark utility colors. */
+.bg-\[\#0b1320\], .bg-\[\#080d16\] { background-color: #f8fafc !important; }
+.text-white { color: #172033; }
+.text-slate-300, .text-slate-400 { color: #526176; }
+.text-slate-500 { color: #64748b; }
+.border-\[var\(--border\)\] { border-color: var(--border); }
