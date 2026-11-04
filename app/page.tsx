@@ -50,7 +50,7 @@ export default function Home() {
         <header className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border)] px-6 py-5 lg:px-9">
           <div><p className="text-xs text-[var(--muted)]">ECHO SOS / OPERATIONS</p><h1 className="mt-1 text-xl font-semibold">Overview</h1></div>
           <div className="flex items-center gap-3">
-            <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-xs text-amber-300">Backend not connected</span>
+            <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1.5 text-xs text-amber-300">Shared backend</span>
             <SignOutButton />
           </div>
         </header>
