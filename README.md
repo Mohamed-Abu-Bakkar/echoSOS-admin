@@ -5,7 +5,7 @@ A separate Next.js administration console for the EchoSOS BLE emergency alert sy
 ## Architecture decisions
 
 - **Application:** Next.js 16 + React 19 + TypeScript.
-- **Operational data:** the existing EchoSOS Convex deployment used by `echoSOS1`.
+- **Operational data:** the dedicated EchoSOS development Convex deployment (`perceptive-schnauzer-138`) while integrating; production remains isolated.
 - **Administrator authentication:** Better Auth via Convex's maintained `@convex-dev/better-auth` component.
 - **Map:** Leaflet + OpenStreetMap tiles with visible attribution.
 - **Initial access model:** one administrator account; public registration is disabled.
@@ -13,12 +13,12 @@ A separate Next.js administration console for the EchoSOS BLE emergency alert sy
 
 ## Repository boundary
 
-This repository owns the admin web UI. The `echoSOS1` repository owns the shared Convex backend, schema, Better Auth component registration, auth HTTP routes, and admin-only queries/mutations. The backend work is on branch `feature/admin-backend-foundation`. Do not create a second Convex project or deploy a competing schema from this repository.
+This repository owns the admin web UI. The `echoSOS1` repository owns the shared Convex backend, schema, Better Auth component registration, auth HTTP routes, and admin-only queries/mutations. During integration, use only the dedicated development deployment `https://perceptive-schnauzer-138.convex.cloud` and its `.convex.site` endpoint. Do not point admin development at production or create a second Convex project.
 
 ## Local setup
 
-1. Review and integrate the shared backend branch in `echoSOS1` on a development deployment.
-2. Copy `.env.example` to `.env.local` and fill in the URLs for the same Convex deployment used by the mobile app.
+1. Integrate and validate the shared backend against the dedicated development deployment in `echoSOS1`.
+2. Configure the three frontend environment variables shown in `.env.example` in the chosen runtime environment; do not commit private `.env.local` files.
 3. Install dependencies and run the admin app:
 
 ```bash
