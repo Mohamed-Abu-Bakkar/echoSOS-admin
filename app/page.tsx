@@ -1,4 +1,5 @@
 import Link from "next/link";
+import OverviewLive from "@/components/overview-live";
 import { Activity, ArrowUpRight, BellRing, Bluetooth, Clock3, MapPin, ShieldCheck, Users } from "lucide-react";
 
 const navigation = [
@@ -59,36 +60,7 @@ export default function Home() {
             <span className="text-xs text-[var(--muted)]">Live data will be sourced from the mobile app's Convex deployment</span>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            <Metric label="Active SOS alerts" value="—" note="Waiting for authenticated query" icon={BellRing} />
-            <Metric label="Registered users" value="—" note="Waiting for shared user records" icon={Users} />
-            <Metric label="Registered beacons" value="—" note="Waiting for beacon inventory query" icon={Bluetooth} />
-            <Metric label="Alerts today" value="—" note="Waiting for alert history query" icon={Activity} />
-          </div>
-
-          <div className="grid gap-5 xl:grid-cols-[1.55fr_1fr]">
-            <section className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--panel)]">
-              <div className="flex items-center justify-between border-b border-[var(--border)] px-5 py-4">
-                <div><h3 className="font-semibold">Live SOS map</h3><p className="mt-1 text-xs text-[var(--muted)]">OpenStreetMap · incident locations</p></div>
-                <MapPin size={18} className="text-[var(--muted)]" />
-              </div>
-              <div className="grid min-h-[300px] place-items-center bg-[#0c1724] p-8 text-center">
-                <div className="max-w-sm">
-                  <div className="mx-auto grid h-12 w-12 place-items-center rounded-2xl border border-[var(--border)] bg-[var(--panel-soft)]"><MapPin size={22} className="text-slate-300" /></div>
-                  <h4 className="mt-4 font-medium">Map will activate with live alert data</h4>
-                  <p className="mt-2 text-sm leading-6 text-[var(--muted)]">No incident coordinates are fabricated. Active SOS locations will be plotted here when the shared backend query is connected.</p>
-                </div>
-              </div>
-              <div className="flex items-center justify-between border-t border-[var(--border)] px-5 py-3 text-xs text-[var(--muted)]"><span>© OpenStreetMap contributors</span><span>Map layer: standard</span></div>
-            </section>
-
-            <section className="rounded-2xl border border-[var(--border)] bg-[var(--panel)]">
-              <div className="flex items-center justify-between border-b border-[var(--border)] px-5 py-4"><div><h3 className="font-semibold">Recent SOS activity</h3><p className="mt-1 text-xs text-[var(--muted)]">Latest emergency events</p></div><ArrowUpRight size={17} className="text-[var(--muted)]" /></div>
-              <div className="grid min-h-[300px] place-items-center p-6 text-center">
-                <div><Clock3 size={24} className="mx-auto text-slate-500" /><p className="mt-3 text-sm font-medium">No live activity loaded</p><p className="mt-1 max-w-xs text-xs leading-5 text-[var(--muted)]">Recent alerts will be displayed here from the existing alert_history and active_alert tables.</p></div>
-              </div>
-            </section>
-          </div>
+          <OverviewLive />
 
           <section className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-5">
             <div className="flex items-center gap-3"><ShieldCheck size={19} className="text-emerald-400" /><h3 className="font-semibold">Safety boundary</h3></div>
