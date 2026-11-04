@@ -1,13 +1,14 @@
 import Link from "next/link";
 import OverviewLive from "@/components/overview-live";
 import SignOutButton from "@/components/sign-out-button";
-import { Activity, BellRing, Bluetooth, Clock3, ShieldCheck, Users } from "lucide-react";
+import { Activity, BellRing, Bluetooth, Clock3, ContactRound, ShieldCheck, Users } from "lucide-react";
 
 const navigation = [
   { label: "Overview", href: "/", icon: Activity, active: true },
   { label: "SOS monitoring", href: "/alerts", icon: BellRing },
   { label: "Users", href: "/users", icon: Users },
   { label: "Beacons", href: "/beacons", icon: Bluetooth },
+  { label: "Emergency contacts", href: "/contacts", icon: ContactRound },
   { label: "Alert history", href: "/history", icon: Clock3 }
 ];
 
