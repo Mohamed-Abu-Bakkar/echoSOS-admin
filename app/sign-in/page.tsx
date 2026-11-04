@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 import { ShieldCheck, LockKeyhole, Mail, ArrowRight } from "lucide-react";
 
 export default function SignInPage() {
@@ -8,11 +10,18 @@ export default function SignInPage() {
   const [password, setPassword] = useState("");
   const [notice, setNotice] = useState("Authentication will activate when the shared Convex Better Auth component is configured.");
   const [busy, setBusy] = useState(false);
+  const router = useRouter();
+  const { data: session, isPending } = authClient.useSession();
+
+  useEffect(() => { if (!isPending && session) router.replace("/"); }, [isPending, session, router]);
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setBusy(true);
-    setNotice("The shared authentication backend is not connected yet. No credentials were sent.");
+    setNotice("");
+    const result = await authClient.signIn.email({ email, password, callbackURL: "/" });
+    if (result.error) setNotice(result.error.message || "Unable to sign in.");
+    else router.replace("/");
     setBusy(false);
   }
 
